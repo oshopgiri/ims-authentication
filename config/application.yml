@@ -1,0 +1,69 @@
+# DB configuration -----------------------------------------------------------------------------------------------------
+db: &db
+    DB_HOST:
+    DB_PORT:
+    DB_USERNAME:
+    DB_PASSWORD:
+
+db_development: &db_development
+    <<: *db
+    DB_HOST: localhost
+    DB_PORT: '5432'
+    DB_USERNAME: postgres
+    DB_PASSWORD: postgres
+
+db_test: &db_test
+    <<: *db
+    <<: *db_development
+
+db_production: &db_production
+    <<: *db
+# ----------------------------------------------------------------------------------------------------------------------
+
+# JWT configuration ----------------------------------------------------------------------------------------------------
+jwt: &jwt
+    JWT_SECRET:
+
+jwt_development: &jwt_development
+    <<: *jwt
+    JWT_SECRET: 4bbb5eeff52040aa42356737abd349fc3048cea15307fa1ee9403d778298983845b3320359382704b0135fd0ccd1341fd148d8cc0d85a060f81e9deb767701b3
+
+jwt_test: &jwt_test
+    <<: *jwt
+    <<: *jwt_development
+
+jwt_production: &jwt_production
+    <<: *jwt
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Devise configuration -------------------------------------------------------------------------------------------------
+devise: &devise
+    DEVISE_SECRET:
+    DEVISE_EMAIL_FROM:
+
+devise_development: &devise_development
+    <<: *devise
+    DEVISE_SECRET: 19cbcbeb1169f0206a7d7cf6ccbfaf3b14263ec0ddd6c8c0c84c8fe6f9101c31cb0b4f87aaf13c3f480661133833c18c3de7de4cd9dc3edb8d6ab62447ea10d7
+
+devise_test: &devise_test
+    <<: *devise
+    <<: *devise_development
+
+devise_production: &devise_production
+    <<: *devise
+# ----------------------------------------------------------------------------------------------------------------------
+
+development:
+    <<: *db_development
+    <<: *jwt_development
+    <<: *devise_development
+
+test:
+    <<: *db_test
+    <<: *jwt_test
+    <<: *devise_test
+
+production:
+    <<: *db_production
+    <<: *jwt_production
+    <<: *devise_production
