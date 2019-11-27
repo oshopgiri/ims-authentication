@@ -39,6 +39,14 @@ RailsAdmin.config do |config|
 		# history_show
 	end
 
+	config.model 'Group' do
+		include_fields :name, :description, :meta_info, :users
+
+		list do
+			exclude_fields :users
+		end
+	end
+
 	config.model 'User' do
 		include_fields :email, :first_name, :last_name
 
@@ -46,7 +54,7 @@ RailsAdmin.config do |config|
 			label 'Employee ID'
 		end
 
-		include_fields :uuid
+		include_fields :groups, :uuid
 
 		edit do
 			include_fields :password, :password_confirmation
@@ -56,5 +64,9 @@ RailsAdmin.config do |config|
 		show do
 			include_fields :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip
 		end
+	end
+
+	config.model 'UserGroup' do
+		visible false
 	end
 end
