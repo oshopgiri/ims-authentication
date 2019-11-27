@@ -53,6 +53,16 @@ devise_production: &devise_production
     <<: *devise
 # ----------------------------------------------------------------------------------------------------------------------
 
+# Eureka configuration -------------------------------------------------------------------------------------------------
+eureka: &eureka
+    EUREKA_SERVICE_NAME:
+    EUREKA_URL:
+    EUREKA_PORT:
+
+eureka_production: &eureka_production
+    <<: *eureka
+# ----------------------------------------------------------------------------------------------------------------------
+
 development:
     <<: *db_development
     <<: *jwt_development
@@ -67,3 +77,4 @@ production:
     <<: *db_production
     <<: *jwt_production
     <<: *devise_production
+    <<: *eureka_production

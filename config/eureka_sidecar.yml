@@ -1,0 +1,5 @@
+eureka:
+    service_name: <%= ENV.fetch('EUREKA_SERVICE_NAME') { '' } %>
+    url: <%= ENV.fetch('EUREKA_URL') { '' } %>
+service:
+    port: <%= ENV.fetch('EUREKA_PORT') { '' } %>
