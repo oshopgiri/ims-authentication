@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-bin/rake db:migrate
+bin/rails db:migrate
+# bin/bundle exec sidecar
