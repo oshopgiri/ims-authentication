@@ -3,6 +3,10 @@ class User < ApplicationRecord
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
 
+	ROLE_ADMIN = 'admin'.freeze
+	ROLE_USER = 'user'.freeze
+	ROLES = [ROLE_ADMIN, ROLE_USER]
+
 	validates :email, presence: true
 	validates :first_name, presence: true
 	validates :last_name, presence: true
@@ -23,6 +27,10 @@ class User < ApplicationRecord
 
 	def name
 		"#{first_name} #{last_name}"
+	end
+
+	def has_role? role
+		self.role.eql? role
 	end
 
 	private
