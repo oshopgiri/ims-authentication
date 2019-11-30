@@ -27,24 +27,53 @@ RailsAdmin.config do |config|
 		'OAuth Manager' => '/oauth/applications'
 	}
 
+	config.included_models = ['Doorkeeper::Application', 'Group', 'User']
+
 	config.actions do
 		dashboard # mandatory
 		index # mandatory
-		new
-		export
-		bulk_delete
+		new do
+			except ['Doorkeeper::Application']
+		end
 		show
-		edit
-		delete
-		show_in_app
+		edit do
+			except ['Doorkeeper::Application']
+		end
+		delete do
+			except ['Doorkeeper::Application']
+		end
+		bulk_delete do
+			except ['Doorkeeper::Application']
+		end
+		export do
+			except ['Doorkeeper::Application']
+		end
+		show_in_app do
+			except ['Doorkeeper::Application']
+		end
 
 		## With an audit adapter, you can add:
 		# history_index
 		# history_show
 	end
 
+	config.model 'Doorkeeper::Application' do
+		include_fields :name, :redirect_uri, :confidential, :scopes
+
+		show do
+			include_fields :groups
+		end
+	end
+
 	config.model 'Group' do
-		include_fields :name, :description, :meta_info, :users
+		include_fields :name, :description, :meta_info
+
+		field :application do
+			inline_add false
+			inline_edit false
+		end
+
+		include_fields :users
 
 		list do
 			exclude_fields :users
@@ -68,9 +97,5 @@ RailsAdmin.config do |config|
 		show do
 			include_fields :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip
 		end
-	end
-
-	config.model 'UserGroup' do
-		visible false
 	end
 end
