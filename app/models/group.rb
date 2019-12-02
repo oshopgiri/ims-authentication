@@ -1,5 +1,5 @@
 class Group < ApplicationRecord
-	belongs_to :application, class_name: '::Doorkeeper::Application'
+	belongs_to :application, class_name: 'Application'
 	has_many :user_groups
 	has_many :users, through: :user_groups
 

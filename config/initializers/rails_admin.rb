@@ -60,9 +60,9 @@ RailsAdmin.config do |config|
 	config.model 'Doorkeeper::Application' do
 		include_fields :name, :redirect_uri, :confidential, :scopes
 
-		show do
-			include_fields :groups
-		end
+		#show do
+		#	include_fields :groups
+		#end
 	end
 
 	config.model 'Group' do
