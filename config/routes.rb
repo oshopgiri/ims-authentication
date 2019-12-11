@@ -7,5 +7,12 @@ Rails.application.routes.draw do
 		mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 	end
 
+	resources :tests, only: %i{index} do
+		collection do
+			get :redirect_authorization_token
+			post :redirect_access_token
+		end
+	end
+
 	root to: 'rails_admin/main#dashboard'
 end

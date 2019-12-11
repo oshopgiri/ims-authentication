@@ -62,6 +62,11 @@ eureka_production: &eureka_production
     <<: *eureka
 # ----------------------------------------------------------------------------------------------------------------------
 
+OAUTH_IMS_CLIENT_ID: oHoT4xJee7X--ySX-iVzVMYrqvtl2CTkmiW269p6hFE
+OAUTH_IMS_CLIENT_SECRET: mmjpTpOQxvXe4UVwhtU4Uwys31ZeJ2ml68MlyLxtXek
+OAUTH_IMS_AUTHORIZATION_REDIRECT_URI: urn:ietf:wg:oauth:2.0:oob
+OAUTH_IMS_ACCESS_REDIRECT_URI: http://localhost:3000/tests/redirect_authorization_token
+
 development:
     <<: *db_development
     <<: *jwt_development
