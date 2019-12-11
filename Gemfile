@@ -50,7 +50,10 @@ gem 'doorkeeper-jwt'
 gem 'rails_admin', '~> 2.0'
 
 # Service Discovery
-gem 'ruby_eureka'
+# gem 'ruby_eureka'
+
+# HTTP calls
+gem 'httparty'
 
 # jQuery
 gem 'jquery-rails'
